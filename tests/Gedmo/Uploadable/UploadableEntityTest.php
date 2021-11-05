@@ -355,7 +355,7 @@ class UploadableEntityTest extends BaseTestCaseORM
         $sha1String = substr($file->getFilePath(), strrpos($file->getFilePath(), '/') + 1);
         $sha1String = str_replace('.txt', '', $sha1String);
 
-        $this->assertRegExp('/[a-z0-9]{40}/', $sha1String);
+        $this->assertMatchesRegularExpression('/[a-z0-9]{40}/', $sha1String);
     }
 
     public function testFileWithFilenameAlphanumericGenerator()

@@ -346,7 +346,7 @@ class MaterializedPathORMRepositoryTest extends BaseTestCaseORM
         $this->em->persist($newNode);
         $this->em->flush();
 
-        $this->assertRegexp('/Food\-\d+,New\sNode\-\d+/', $newNode->getPath());
+        $this->assertMatchesRegularExpression('/Food\-\d+,New\sNode\-\d+/', $newNode->getPath());
         $this->assertEquals(2, $newNode->getLevel());
     }
 
