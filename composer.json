@@ -48,7 +48,7 @@
     "require-dev": {
         "alcaeus/mongo-php-adapter": "^1.1",
         "doctrine/cache": "^1.11 || ^2.0",
-        "doctrine/dbal": "^2.13",
+        "doctrine/dbal": "^2.13 || ^3.0",
         "doctrine/doctrine-bundle": "^2.3",
         "doctrine/mongodb-odm": "^2.0",
         "doctrine/orm": "^2.9",
@@ -59,9 +59,9 @@
     },
     "conflict": {
         "doctrine/cache": "<1.11",
-        "doctrine/dbal": "<2.13 || >=3",
+        "doctrine/dbal": "<2.13",
         "doctrine/mongodb-odm": "<2.0",
-        "doctrine/orm": "<2.9 || >=2.10",
+        "doctrine/orm": "<2.9 || >=2.10 <2.10.2",
         "sebastian/comparator": "<2.0"
     },
     "suggest": {
