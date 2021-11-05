@@ -4,6 +4,7 @@ vendor
 
 .php-cs-fixer.cache
 composer.lock
+phpstan.neon
 tests/phpunit.xml
 tests/temp/*.php
 tests/temp/*.log

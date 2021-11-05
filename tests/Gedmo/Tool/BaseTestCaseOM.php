@@ -159,7 +159,7 @@ abstract class BaseTestCaseOM extends \PHPUnit\Framework\TestCase
 
         $conn->expects($this->once())
             ->method('getEventManager')
-            ->will($this->returnValue($evm ?: $this->getEventManager()));
+            ->will($this->returnValue($this->getEventManager()));
 
         $config = $this->getMockAnnotatedConfig();
 
@@ -186,12 +186,15 @@ abstract class BaseTestCaseOM extends \PHPUnit\Framework\TestCase
         return new AnnotationDriverODM($_ENV['annotation_reader']);
     }
 
+    protected function getMockAnnotatedConfig(): object
+    {
+        throw new \BadMethodCallException('Not implemented.');
+    }
+
     /**
      * Build event manager
-     *
-     * @return EventManager
      */
-    private function getEventManager()
+    private function getEventManager(): EventManager
     {
         if (null === $this->evm) {
             $this->evm = new EventManager();

@@ -1,5 +1,6 @@
 <?php
 
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Version;
 use Mapping\Fixture\Unmapped\Timestampable;
@@ -15,6 +16,16 @@ use Mapping\Fixture\Unmapped\Timestampable;
  */
 class ForcedMetadataTest extends \PHPUnit\Framework\TestCase
 {
+    /**
+     * @var Timestampable
+     */
+    private $timestampable;
+
+    /**
+     * @var EntityManagerInterface
+     */
+    private $em;
+
     public function setUp(): void
     {
         $config = new \Doctrine\ORM\Configuration();

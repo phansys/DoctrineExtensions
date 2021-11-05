@@ -19,6 +19,9 @@ a release.
 ---
 
 ## [Unreleased]
+### Deprecated
+- `Gedmo\Mapping\Driver\File::$_paths` property and `Gedmo\Mapping\Driver\File::setPaths()` method are deprecated and will
+  be removed in version 4.0, as they are not used.
 
 ## [3.2.0] - 2021-10-05
 ### Added

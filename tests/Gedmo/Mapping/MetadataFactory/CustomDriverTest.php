@@ -1,5 +1,6 @@
 <?php
 
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Doctrine\Persistence\Mapping\Driver\MappingDriver;
 use Mapping\Fixture\Unmapped\Timestampable;
@@ -15,6 +16,16 @@ use Mapping\Fixture\Unmapped\Timestampable;
  */
 class CustomDriverTest extends \PHPUnit\Framework\TestCase
 {
+    /**
+     * @var Timestampable
+     */
+    private $timestampable;
+
+    /**
+     * @var EntityManagerInterface
+     */
+    private $em;
+
     public function setUp(): void
     {
         $config = new \Doctrine\ORM\Configuration();

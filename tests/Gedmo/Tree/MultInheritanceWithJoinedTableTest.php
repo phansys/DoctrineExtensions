@@ -23,6 +23,11 @@ class MultInheritanceWithJoinedTableTest extends BaseTestCaseORM
     public const ROLE = 'Tree\\Fixture\\Role';
     public const USERLDAP = 'Tree\\Fixture\\UserLDAP';
 
+    /**
+     * @var TreeListener
+     */
+    private $tree;
+
     protected function setUp(): void
     {
         parent::setUp();

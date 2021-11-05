@@ -2,6 +2,7 @@
 
 namespace Gedmo\Translatable;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Driver\DriverChain;
 use Doctrine\ORM\Mapping\Driver\YamlDriver;
 use Gedmo\Mapping\ExtensionMetadataFactory;
@@ -18,6 +19,15 @@ use Gedmo\Mapping\ExtensionMetadataFactory;
 class TranslatableMappingTest extends \PHPUnit\Framework\TestCase
 {
     public const TEST_YAML_ENTITY_CLASS = 'Mapping\Fixture\Yaml\User';
+
+    /**
+     * @var TranslatableListener
+     */
+    private $translatableListener;
+
+    /**
+     * @var EntityManagerInterface
+     */
     private $em;
 
     public function setUp(): void

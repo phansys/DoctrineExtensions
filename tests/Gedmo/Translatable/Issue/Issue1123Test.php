@@ -12,6 +12,11 @@ class Issue1123Test extends BaseTestCaseORM
     public const BASE_ENTITY = 'Translatable\\Fixture\\Issue1123\\BaseEntity';
     public const CHILD_ENTITY = 'Translatable\\Fixture\\Issue1123\\ChildEntity';
 
+    /**
+     * @var TranslatableListener
+     */
+    private $translatableListener;
+
     protected function setUp(): void
     {
         parent::setUp();
