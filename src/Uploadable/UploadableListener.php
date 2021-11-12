@@ -80,7 +80,7 @@ class UploadableListener extends MappedEventSubscriber
     {
         parent::__construct();
 
-        $this->mimeTypeGuesser = $mimeTypeGuesser ? $mimeTypeGuesser : new MimeTypeGuesser();
+        $this->mimeTypeGuesser = $mimeTypeGuesser ?: new MimeTypeGuesser();
     }
 
     /**
@@ -243,7 +243,7 @@ class UploadableListener extends MappedEventSubscriber
 
         if ($config['allowedTypes'] || $config['disallowedTypes']) {
             $ok = $config['allowedTypes'] ? false : true;
-            $mimes = $config['allowedTypes'] ? $config['allowedTypes'] : $config['disallowedTypes'];
+            $mimes = $config['allowedTypes'] ?: $config['disallowedTypes'];
 
             foreach ($mimes as $m) {
                 if ($mime === $m) {

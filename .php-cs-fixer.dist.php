@@ -27,6 +27,7 @@ return (new PhpCsFixer\Config())
         'php_unit_test_annotation' => false,
         'php_unit_test_case_static_method_calls' => true,
         'static_lambda' => true,
+        'ternary_to_elvis_operator' => true,
         'ternary_to_null_coalescing' => true,
     ])
     ->setFinder($finder)
