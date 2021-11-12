@@ -1,5 +1,12 @@
 <?php
 
+$header = <<<'HEADER'
+This file is part of the Doctrine Behavioral Extensions package.
+(c) Gediminas Morkevicius <gediminas.morkevicius@gmail.com> http://www.gediminasm.org
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+HEADER;
+
 $finder = PhpCsFixer\Finder::create()
     ->in([
         __DIR__ . '/example',
@@ -19,6 +26,7 @@ return (new PhpCsFixer\Config())
         'combine_consecutive_issets' => true,
         'combine_consecutive_unsets' => true,
         'error_suppression' => true,
+        'header_comment' => ['header' => $header],
         'is_null' => false,
         'list_syntax' => ['syntax' => 'short'],
         'modernize_types_casting' => true,
