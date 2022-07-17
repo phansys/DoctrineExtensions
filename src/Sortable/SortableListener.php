@@ -528,7 +528,7 @@ class SortableListener extends MappedEventSubscriber
                     continue;
                 }
                 $ea->updatePositions($relocation, $delta, $config);
-                unset($this->relocations[$hash]['deltas'][$deltaKey]);
+                $this->removeRelocation($hash, $deltaKey);
             }
         }
 
@@ -660,5 +660,10 @@ class SortableListener extends MappedEventSubscriber
     protected function getNamespace()
     {
         return __NAMESPACE__;
+    }
+
+    private function removeRelocation(string $hash, int $key): void
+    {
+        unset($this->relocations[$hash]['deltas'][$key]);
     }
 }
