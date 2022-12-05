@@ -32,15 +32,31 @@ jobs:
           - "highest"
         dbal-version:
           - ""
+        object-manager:
+          - ""
         include:
           - deps: "lowest"
             php-version: "7.2"
+            object-manager: "doctrine/orm:^2.10.2"
+          - deps: "lowest"
+            php-version: "7.2"
+            object-manager: "doctrine/mongodb-odm:^2.3"
           - deps: "highest"
             php-version: "8.1"
             dbal-version: "^2.13.1"
+            object-manager: "doctrine/orm:^2.10.2"
+          - deps: "highest"
+            php-version: "8.1"
+            dbal-version: "^2.13.1"
+            object-manager: "doctrine/mongodb-odm:^2.3"
           - deps: "highest"
             php-version: "8.1"
             dbal-version: "^3.2"
+            object-manager: "doctrine/orm:^2.10.2"
+          - deps: "highest"
+            php-version: "8.1"
+            dbal-version: "^3.2"
+            object-manager: "doctrine/mongodb-odm:^2.3"
 
     steps:
       - name: "Checkout"
@@ -58,6 +74,10 @@ jobs:
       - name: "Restrict DBAL version"
         if: "${{ matrix.dbal-version }}"
         run: "composer require --dev --no-update doctrine/dbal:${{ matrix.dbal-version }}"
+
+      - name: "Restrict object manager"
+        if: "${{ matrix.object-manager }}"
+        run: "composer require --dev --no-update ${{ matrix.object-manager }}"
 
       - name: "Install dependencies with Composer"
         uses: "ramsey/composer-install@v2"
