@@ -161,7 +161,7 @@ class RepositoryUtils implements RepositoryUtilsInterface
                     --$l;
                 }
                 // Stack is empty (we are inspecting the root)
-                if (0 == $l) {
+                if (0 === $l) {
                     // Assigning the root child
                     $i = count($nestedTree);
                     $nestedTree[$i] = $item;

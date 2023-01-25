@@ -71,7 +71,7 @@ final class SortableDocumentGroupTest extends BaseTestCaseMongoODM
         static::assertCount(2, $kids);
 
         for ($i = 0; $i < 2; ++$i) {
-            $expected = (1 == $i + 1) ? $i + 1 : 0;
+            $expected = 0 === $i ? $i + 1 : 0;
             static::assertSame($expected, $kids[$i]->getPosition());
         }
     }

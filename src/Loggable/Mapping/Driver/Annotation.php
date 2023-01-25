@@ -103,7 +103,7 @@ class Annotation extends AbstractAnnotationDriver
      */
     protected function isMappingValid(ClassMetadata $meta, $field)
     {
-        return false == $meta->isCollectionValuedAssociation($field);
+        return false === $meta->isCollectionValuedAssociation($field);
     }
 
     /**
