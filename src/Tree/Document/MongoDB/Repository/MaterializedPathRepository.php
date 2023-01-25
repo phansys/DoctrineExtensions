@@ -92,9 +92,9 @@ class MaterializedPathRepository extends AbstractTreeRepository
             }
         }
 
-        $qb = $this->getChildrenQueryBuilder($node, $direct);
-
-        $qb->count();
+        $qb = $this
+            ->getChildrenQueryBuilder($node, $direct)
+            ->count();
 
         return (int) $qb->getQuery()->execute();
     }

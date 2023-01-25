@@ -134,7 +134,7 @@ final class ReferencesListenerTest extends BaseTestCaseOM
         $product = $this->dm->find(get_class($product), $product->getId());
 
         static::assertInstanceOf(Collection::class, $product->getStockItems());
-        static::assertSame(2, $product->getStockItems()->count());
+        static::assertCount(2, $product->getStockItems());
 
         $first = $product->getStockItems()->first();
 

@@ -53,7 +53,7 @@ final class MaterializedPathODMMongoDBRepositoryTest extends BaseTestCaseMongoOD
         /** @var CachingIterator $result */
         $result = $this->repo->getRootNodes('title');
 
-        static::assertSame(3, \iterator_count($result));
+        static::assertCount(3, $result);
         $result->rewind();
 
         $result->rewind();
