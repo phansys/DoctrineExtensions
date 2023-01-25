@@ -142,9 +142,6 @@ class MaterializedPathRepository extends AbstractTreeRepository
         return $qb;
     }
 
-    /**
-     * G{@inheritdoc}
-     */
     public function getChildrenQuery($node = null, $direct = false, $sortByField = null, $direction = 'asc', $includeNode = false)
     {
         return $this->getChildrenQueryBuilder($node, $direct, $sortByField, $direction, $includeNode)->getQuery();

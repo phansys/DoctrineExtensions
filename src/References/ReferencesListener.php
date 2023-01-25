@@ -10,6 +10,7 @@
 namespace Gedmo\References;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\EventArgs;
 use Doctrine\Persistence\Event\LoadClassMetadataEventArgs;
 use Doctrine\Persistence\ObjectManager;
@@ -118,14 +119,14 @@ class ReferencesListener extends MappedEventSubscriber
                         $property->setValue(
                             $object,
                             new LazyCollection(
-                                static function () use ($id, &$manager, $class, $identifier) {
+                                static function () use ($id, &$manager, $class, $identifier): Collection {
                                     $results = $manager
                                         ->getRepository($class)
                                         ->findBy([
                                             $identifier => $id,
                                         ]);
 
-                                    return new ArrayCollection(is_array($results) ? $results : $results->toArray());
+                                    return new ArrayCollection($results);
                                 }
                             )
                         );
@@ -215,14 +216,14 @@ class ReferencesListener extends MappedEventSubscriber
                 $property->setValue(
                     $object,
                     new LazyCollection(
-                        static function () use ($id, &$manager, $class, $identifier) {
+                        static function () use ($id, &$manager, $class, $identifier): Collection {
                             $results = $manager
                                 ->getRepository($class)
                                 ->findBy([
                                     $identifier => $id,
                                 ]);
 
-                            return new ArrayCollection(is_array($results) ? $results : $results->toArray());
+                            return new ArrayCollection($results);
                         }
                     )
                 );

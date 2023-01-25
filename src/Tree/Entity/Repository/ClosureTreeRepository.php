@@ -406,7 +406,7 @@ class ClosureTreeRepository extends AbstractTreeRepository
     }
 
     /**
-     * @return array|bool
+     * @return string[]|true
      */
     public function verify()
     {
@@ -467,7 +467,7 @@ class ClosureTreeRepository extends AbstractTreeRepository
             }
         }
 
-        return $errors ?: true;
+        return [] === $errors ? true : $errors;
     }
 
     /**

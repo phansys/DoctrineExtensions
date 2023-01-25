@@ -265,6 +265,7 @@ class SortableListener extends MappedEventSubscriber
                                 // If the object implements Comparable interface we can use its compareTo method
                                 // Otherwise we fallback to normal object comparison
                                 if ($gr instanceof Comparable) {
+                                    /** @var int|bool $matches */
                                     $matches = $gr->compareTo($value);
                                     // @todo: Remove "is_int" check and only support integer as the interface expects.
                                     if (is_int($matches)) {

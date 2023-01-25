@@ -25,7 +25,7 @@ interface RepositoryInterface extends RepositoryUtilsInterface
      * @param string $sortByField
      * @param string $direction
      *
-     * @return array
+     * @return \Iterator|array
      */
     public function getRootNodes($sortByField = null, $direction = 'asc');
 
@@ -50,7 +50,7 @@ interface RepositoryInterface extends RepositoryUtilsInterface
      * @param string|string[]      $direction   Sort order ('ASC'|'DESC'). If $sortByField is an array, this may also be an array with matching number of elements
      * @param bool                 $includeNode Include the root node in results?
      *
-     * @return array|null List of children or null on failure
+     * @return \Iterator|array|null List of children or null on failure
      */
     public function getChildren($node = null, $direct = false, $sortByField = null, $direction = 'ASC', $includeNode = false);
 

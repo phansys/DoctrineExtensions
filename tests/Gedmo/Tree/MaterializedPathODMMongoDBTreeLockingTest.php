@@ -77,40 +77,41 @@ final class MaterializedPathODMMongoDBTreeLockingTest extends BaseTestCaseMongoO
 
     public function testModifyingANodeWhileItsTreeIsNotLockedShouldNotThrowException(): void
     {
-        static::markTestSkipped('the locking test is failing after removal of scheduleExtraUpdate');
-        $article = $this->createArticle();
-        $article->setTitle('1');
-        $article2 = $this->createArticle();
-        $article2->setTitle('2');
-        $article2->setParent($article);
+        static::markTestSkipped('The locking test is failing after removal of scheduleExtraUpdate.');
 
-        // These tree will be locked after flush, simulating concurrency
-        $this->dm->persist($article);
-        $this->dm->persist($article2);
-        $this->dm->flush();
-        $this->dm->clear();
+        // $article = $this->createArticle();
+        // $article->setTitle('1');
+        // $article2 = $this->createArticle();
+        // $article2->setTitle('2');
+        // $article2->setParent($article);
 
-        // These one will release the lock as normal
-        $this->listener->setReleaseLocks(true);
+        // // These tree will be locked after flush, simulating concurrency
+        // $this->dm->persist($article);
+        // $this->dm->persist($article2);
+        // $this->dm->flush();
+        // $this->dm->clear();
 
-        $article3 = $this->createArticle();
-        $article3->setTitle('3');
+        // // These one will release the lock as normal
+        // $this->listener->setReleaseLocks(true);
 
-        $this->dm->persist($article3);
-        $this->dm->flush();
+        // $article3 = $this->createArticle();
+        // $article3->setTitle('3');
 
-        // This should NOT throw an exception
-        $article3->setTitle('New title');
-        $this->dm->flush();
+        // $this->dm->persist($article3);
+        // $this->dm->flush();
 
-        // But this should throw it, because the root of its tree ($article) is still locked
-        $this->expectException(TreeLockingException::class);
+        // // This should NOT throw an exception
+        // $article3->setTitle('New title');
+        // $this->dm->flush();
 
-        $repo = $this->dm->getRepository(self::ARTICLE);
-        $article2 = $repo->findOneBy(['title' => '2']);
-        $article2->setTitle('New title 2');
+        // // But this should throw it, because the root of its tree ($article) is still locked
+        // $this->expectException(TreeLockingException::class);
 
-        $this->dm->flush();
+        // $repo = $this->dm->getRepository(self::ARTICLE);
+        // $article2 = $repo->findOneBy(['title' => '2']);
+        // $article2->setTitle('New title 2');
+
+        // $this->dm->flush();
     }
 
     public function createArticle(): Article

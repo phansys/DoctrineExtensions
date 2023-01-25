@@ -195,7 +195,10 @@ class ArticleCarbon implements Timestampable
         $this->author = $author;
     }
 
-    public function getCreated(): ?\Carbon\Carbon
+    /**
+     * @return \DateTime|\Carbon\Carbon|null
+     */
+    public function getCreated(): ?\DateTime
     {
         return $this->created;
     }

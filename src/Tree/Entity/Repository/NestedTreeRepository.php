@@ -814,11 +814,11 @@ class NestedTreeRepository extends AbstractTreeRepository
      * If any error is detected it will return an array
      * with a list of errors found on tree
      *
-     * @return array|bool true on success,error list on failure
+     * @return string[]|true true on success, error list on failure
      */
     public function verify()
     {
-        if (!$this->childCount()) {
+        if (0 === $this->childCount()) {
             return true; // tree is empty
         }
 
@@ -834,7 +834,7 @@ class NestedTreeRepository extends AbstractTreeRepository
             $this->verifyTree($errors);
         }
 
-        return $errors ?: true;
+        return [] === $errors ? true : $errors;
     }
 
     /**
@@ -916,6 +916,8 @@ class NestedTreeRepository extends AbstractTreeRepository
     /**
      * Collect errors on given tree if
      * where are any
+     * 
+     * @param string[] $errors
      */
     private function verifyTree(array &$errors, ?object $root = null): void
     {

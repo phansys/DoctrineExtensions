@@ -33,11 +33,7 @@ class MimeTypeGuesser implements MimeTypeGuesserInterface
         }
 
         if (function_exists('finfo_open')) {
-            if (!$finfo = new \finfo(FILEINFO_MIME_TYPE)) {
-                return null;
-            }
-
-            return $finfo->file($filePath);
+            return (new \finfo(FILEINFO_MIME_TYPE))->file($filePath);
         }
 
         return null;
