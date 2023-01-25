@@ -519,7 +519,7 @@ class TranslatableListener extends MappedEventSubscriber
                 $translated = $this->defaultTranslationValue;
 
                 foreach ($result as $entry) {
-                    if ($entry['field'] == $field) {
+                    if ($entry['field'] === $field) {
                         $translated = $entry['content'] ?? null;
 
                         break;

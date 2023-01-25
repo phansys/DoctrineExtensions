@@ -218,7 +218,7 @@ class SortableListener extends MappedEventSubscriber
         foreach ($this->relocations as $hash => $relocation) {
             $config = $this->getConfiguration($em, $relocation['name']);
             foreach ($relocation['deltas'] as $delta) {
-                if ($delta['start'] > $this->maxPositions[$hash] || 0 == $delta['delta']) {
+                if ($delta['start'] > $this->maxPositions[$hash] || 0 === $delta['delta']) {
                     continue;
                 }
 
@@ -555,7 +555,7 @@ class SortableListener extends MappedEventSubscriber
         foreach ($this->relocations as $hash => $relocation) {
             $config = $this->getConfiguration($em, $relocation['name']);
             foreach ($relocation['deltas'] as $delta) {
-                if ($delta['start'] > $this->maxPositions[$hash] || 0 == $delta['delta']) {
+                if ($delta['start'] > $this->maxPositions[$hash] || 0 === $delta['delta']) {
                     continue;
                 }
                 $ea->updatePositions($relocation, $delta, $config);
@@ -649,8 +649,8 @@ class SortableListener extends MappedEventSubscriber
 
         try {
             $newDelta = ['start' => $start, 'stop' => $stop, 'delta' => $delta, 'exclude' => $exclude];
-            array_walk($this->relocations[$hash]['deltas'], static function (&$val, $idx, $needle) {
-                if ($val['start'] == $needle['start'] && $val['stop'] == $needle['stop']) {
+            array_walk($this->relocations[$hash]['deltas'], static function (array &$val, $idx, array $needle): void {
+                if ($val['start'] === $needle['start'] && $val['stop'] === $needle['stop']) {
                     $val['delta'] += $needle['delta'];
                     $val['exclude'] = array_merge($val['exclude'], $needle['exclude']);
 
@@ -659,7 +659,7 @@ class SortableListener extends MappedEventSubscriber
 
                 // For every deletion relocation add newly created object to the list of excludes
                 // otherwise position update queries will run for created objects as well.
-                if (-1 == $val['delta'] && 1 == $needle['delta']) {
+                if (-1 === $val['delta'] && 1 === $needle['delta']) {
                     $val['exclude'] = array_merge($val['exclude'], $needle['exclude']);
                 }
             }, $newDelta);

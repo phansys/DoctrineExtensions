@@ -653,7 +653,7 @@ class NestedTreeRepository extends AbstractTreeRepository
             $rootId = isset($config['root']) ? $wrapped->getPropertyValue($config['root']) : null;
 
             // if node has no children
-            if ($right == $left + 1) {
+            if ($right === $left + 1) {
                 $this->removeSingle($wrapped);
                 $this->listener
                     ->getStrategy($this->_em, $meta->getName())
@@ -1024,7 +1024,7 @@ class NestedTreeRepository extends AbstractTreeRepository
             $parent = $meta->getReflectionProperty($config['parent'])->getValue($node);
             if (!$right || !$left) {
                 $errors[] = "node [{$id}] has invalid left or right values";
-            } elseif ($right == $left) {
+            } elseif ($right === $left) {
                 $errors[] = "node [{$id}] has identical left and right values";
             } elseif ($parent) {
                 if ($parent instanceof Proxy && !$parent->__isInitialized()) {

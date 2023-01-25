@@ -333,7 +333,7 @@ class ClosureTreeRepository extends AbstractTreeRepository
                     $l = $level;
                 }
 
-                if ($l == $firstLevel) {
+                if ($l === $firstLevel) {
                     $tmp = &$nestedTree;
                 } else {
                     $tmp = &$refs[$n['parent_id']][$childrenIndex];

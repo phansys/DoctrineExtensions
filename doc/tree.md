@@ -557,14 +557,14 @@ $controller = $this;
 $tree = $root->childrenHierarchy(null, false, [
     'decorate' => true,
     'rootOpen' => static function (array $tree): ?string {
-        if ([] !== $tree && 0 == $tree[0]['lvl']) {
+        if ([] !== $tree && 0 === $tree[0]['lvl']) {
             return '<div class="catalog-list">';
         }
 
         return null;
     },
     'rootClose' => static function (array $child): ?string {
-        if ([] !== $child && 0 == $child[0]['lvl']) {
+        if ([] !== $child && 0 === $child[0]['lvl']) {
             return '</div>';
         }
 
@@ -573,7 +573,7 @@ $tree = $root->childrenHierarchy(null, false, [
     'childOpen' => '',
     'childClose' => '',
     'nodeDecorator' => static function (array $node) use (&$controller): ?string {
-        if (1 == $node['lvl']) {
+        if (1 === $node['lvl']) {
             return '<h1>'.$node['title'].'</h1>';
         }
 

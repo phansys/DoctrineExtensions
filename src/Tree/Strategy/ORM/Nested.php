@@ -333,7 +333,7 @@ class Nested implements Strategy
                     } else {
                         $newParent = $wrappedParent->getPropertyValue($config['parent']);
 
-                        if (null === $newParent && ((isset($config['root']) && $config['root'] == $config['parent']) || $isNewNode)) {
+                        if (null === $newParent && ((isset($config['root']) && $config['root'] === $config['parent']) || $isNewNode)) {
                             throw new UnexpectedValueException('Cannot persist sibling for a root node, tree operation is not possible');
                         }
                         if (null === $newParent && (isset($config['root']) || $isNewNode)) {
@@ -355,7 +355,7 @@ class Nested implements Strategy
                         ++$level;
                     } else {
                         $newParent = $wrappedParent->getPropertyValue($config['parent']);
-                        if (null === $newParent && ((isset($config['root']) && $config['root'] == $config['parent']) || $isNewNode)) {
+                        if (null === $newParent && ((isset($config['root']) && $config['root'] === $config['parent']) || $isNewNode)) {
                             throw new UnexpectedValueException('Cannot persist sibling for a root node, tree operation is not possible');
                         }
                         if (null === $newParent && (isset($config['root']) || $isNewNode)) {

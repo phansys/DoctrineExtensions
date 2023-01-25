@@ -521,7 +521,7 @@ class SluggableListener extends MappedEventSubscriber
                     $mapping['length'] - (strlen($uniqueSuffix) + strlen($config['separator']))
                 );
                 $this->exponent = strlen($uniqueSuffix) - 1;
-                if (substr($generatedSlug, -strlen($config['separator'])) == $config['separator']) {
+                if (substr($generatedSlug, -strlen($config['separator'])) === $config['separator']) {
                     $generatedSlug = substr($generatedSlug, 0, strlen($generatedSlug) - strlen($config['separator']));
                 }
                 $generatedSlug = $this->makeUniqueSlug($ea, $object, $generatedSlug, true, $config);
