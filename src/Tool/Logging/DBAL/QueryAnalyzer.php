@@ -187,6 +187,8 @@ class QueryAnalyzer implements SQLLogger
 
     /**
      * Create the SQL with mapped parameters
+     *
+     * @param array<int|string, string> $params
      */
     private function generateSql(string $sql, ?array $params, ?array $types): string
     {
@@ -196,7 +198,7 @@ class QueryAnalyzer implements SQLLogger
         $converted = $this->getConvertedParams($params, $types);
         if (is_int(key($params))) {
             $index = key($converted);
-            $sql = preg_replace_callback('@\?@sm', static function ($match) use (&$index, $converted) {
+            $sql = preg_replace_callback('@\?@sm', static function (array $match) use (&$index, $converted): string {
                 return $converted[$index++];
             }, $sql);
         } else {
@@ -210,6 +212,8 @@ class QueryAnalyzer implements SQLLogger
 
     /**
      * Get the converted parameter list
+     *
+     * @param array<int|string, string> $params
      */
     private function getConvertedParams(array $params, array $types): array
     {

@@ -380,7 +380,7 @@ class SluggableListener extends MappedEventSubscriber
                 switch ($options['style']) {
                     case 'camel':
                         $quotedSeparator = preg_quote($options['separator']);
-                        $slug = preg_replace_callback('/^[a-z]|'.$quotedSeparator.'[a-z]/smi', static function ($m) {
+                        $slug = preg_replace_callback('/^[a-z]|'.$quotedSeparator.'[a-z]/smi', static function (array $m): string {
                             return strtoupper($m[0]);
                         }, $slug);
 

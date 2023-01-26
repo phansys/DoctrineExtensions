@@ -98,7 +98,7 @@ class RepositoryUtils implements RepositoryUtilsInterface
             'rootClose' => '</ul>',
             'childOpen' => '<li>',
             'childClose' => '</li>',
-            'nodeDecorator' => static function ($node) use ($meta) {
+            'nodeDecorator' => static function (array $node) use ($meta): string {
                 // override and change it, guessing which field to use
                 if ($meta->hasField('title')) {
                     $field = 'title';
@@ -123,7 +123,7 @@ class RepositoryUtils implements RepositoryUtilsInterface
 
         $childrenIndex = $this->childrenIndex;
 
-        $build = static function ($tree) use (&$build, &$options, $childrenIndex) {
+        $build = static function (array $tree) use (&$build, &$options, $childrenIndex): string {
             $output = is_string($options['rootOpen']) ? $options['rootOpen'] : $options['rootOpen']($tree);
             foreach ($tree as $node) {
                 $output .= is_string($options['childOpen']) ? $options['childOpen'] : $options['childOpen']($node);

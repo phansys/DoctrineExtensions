@@ -79,7 +79,7 @@ final class QueryAnalyzer implements SQLLogger
         $converted = $this->getConvertedParams($params, $types);
         if (is_int(key($params))) {
             $index = key($converted);
-            $sql = preg_replace_callback('@\?@sm', static function ($match) use (&$index, $converted) {
+            $sql = preg_replace_callback('@\?@sm', static function (array $match) use (&$index, $converted): string {
                 return $converted[$index++];
             }, $sql);
         } else {

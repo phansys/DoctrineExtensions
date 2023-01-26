@@ -97,7 +97,7 @@ class ClosureTreeRepository extends AbstractTreeRepository
      */
     public function getPath($node)
     {
-        return array_map(static function (AbstractClosure $closure) {
+        return array_map(static function (AbstractClosure $closure): ?object {
             return $closure->getAncestor();
         }, $this->getPathQuery($node)->getResult());
     }
@@ -204,7 +204,7 @@ class ClosureTreeRepository extends AbstractTreeRepository
     {
         $result = $this->childrenQuery($node, $direct, $sortByField, $direction, $includeNode)->getResult();
         if ($node) {
-            $result = array_map(static function (AbstractClosure $closure) {
+            $result = array_map(static function (AbstractClosure $closure): ?object {
                 return $closure->getDescendant();
             }, $result);
         }
@@ -565,7 +565,7 @@ class ClosureTreeRepository extends AbstractTreeRepository
         $q = $this->_em->createQuery($dql)->setMaxResults($batchSize)->setCacheable(false);
 
         while (($ids = $q->getScalarResult()) && [] !== $ids) {
-            $ids = array_map(static function (array $el) {
+            $ids = array_map(static function (array $el): array {
                 return $el['id'];
             }, $ids);
             $query = "DELETE FROM {$closureTableName} WHERE id IN (".implode(', ', $ids).')';

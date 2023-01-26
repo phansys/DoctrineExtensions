@@ -854,7 +854,7 @@ class NestedTreeRepository extends AbstractTreeRepository
         $self = $this;
         $em = $this->_em;
 
-        $doRecover = static function ($root, &$count, &$lvl) use ($meta, $config, $self, $em, &$doRecover) {
+        $doRecover = static function (?object $root, int &$count, int &$lvl) use ($meta, $config, $self, $em, &$doRecover): void {
             $lft = $count++;
             foreach ($self->getChildren($root, true) as $child) {
                 $depth = ($lvl + 1);
