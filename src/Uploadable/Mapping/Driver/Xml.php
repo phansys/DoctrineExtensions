@@ -40,9 +40,9 @@ class Xml extends BaseXml
                 $xmlUploadable = $xml->uploadable;
                 $config['uploadable'] = true;
                 $config['allowOverwrite'] = $this->_isAttributeSet($xmlUploadable, 'allow-overwrite') ?
-                    (bool) $this->_getAttribute($xmlUploadable, 'allow-overwrite') : false;
+                    $this->_getBooleanAttribute($xmlUploadable, 'allow-overwrite') : false;
                 $config['appendNumber'] = $this->_isAttributeSet($xmlUploadable, 'append-number') ?
-                    (bool) $this->_getAttribute($xmlUploadable, 'append-number') : false;
+                    $this->_getBooleanAttribute($xmlUploadable, 'append-number') : false;
                 $config['path'] = $this->_isAttributeSet($xmlUploadable, 'path') ?
                     $this->_getAttribute($xml->{'uploadable'}, 'path') : '';
                 $config['pathMethod'] = $this->_isAttributeSet($xmlUploadable, 'path-method') ?

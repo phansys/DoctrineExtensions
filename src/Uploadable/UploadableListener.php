@@ -230,7 +230,7 @@ class UploadableListener extends MappedEventSubscriber
         $meta = $om->getClassMetadata(get_class($object));
         $config = $this->getConfiguration($om, $meta->getName());
 
-        if (!$config || !isset($config['uploadable']) || !$config['uploadable']) {
+        if ([] === $config || !isset($config['uploadable']) || !$config['uploadable']) {
             // Nothing to do
             return;
         }
@@ -263,13 +263,13 @@ class UploadableListener extends MappedEventSubscriber
             throw new UploadableCouldntGuessMimeTypeException(sprintf('Couldn\'t guess mime type for file "%s".', $fileInfo->getName()));
         }
 
-        if ($config['allowedTypes'] || $config['disallowedTypes']) {
-            $ok = $config['allowedTypes'] ? false : true;
-            $mimes = $config['allowedTypes'] ?: $config['disallowedTypes'];
+        if ([] !== $config['allowedTypes'] || [] !== $config['disallowedTypes']) {
+            $ok = [] === $config['allowedTypes'];
+            $mimes = [] !== $config['allowedTypes'] ? $config['allowedTypes'] : $config['disallowedTypes'];
 
             foreach ($mimes as $m) {
                 if ($mime === $m) {
-                    $ok = $config['allowedTypes'] ? true : false;
+                    $ok = [] !== $config['allowedTypes'];
 
                     break;
                 }
@@ -319,19 +319,19 @@ class UploadableListener extends MappedEventSubscriber
             $callbackMethod->invokeArgs($object, [$info]);
         }
 
-        if ($config['filePathField']) {
+        if (null !== $config['filePathField']) {
             $this->updateField($object, $uow, $ea, $meta, $config['filePathField'], $info['filePath']);
         }
 
-        if ($config['fileNameField']) {
+        if (null !== $config['fileNameField']) {
             $this->updateField($object, $uow, $ea, $meta, $config['fileNameField'], $info['fileName']);
         }
 
-        if ($config['fileMimeTypeField']) {
+        if (null !== $config['fileMimeTypeField']) {
             $this->updateField($object, $uow, $ea, $meta, $config['fileMimeTypeField'], $info['fileMimeType']);
         }
 
-        if ($config['fileSizeField']) {
+        if (null !== $config['fileSizeField']) {
             $typeOfSizeField = Type::getType($meta->getTypeOfField($config['fileSizeField']));
             $value = $typeOfSizeField->convertToPHPValue(
                 $info['fileSize'],

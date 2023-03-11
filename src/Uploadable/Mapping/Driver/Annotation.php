@@ -50,10 +50,10 @@ class Annotation extends AbstractAnnotationDriver
             $config['appendNumber'] = $annot->appendNumber;
             $config['path'] = $annot->path;
             $config['pathMethod'] = $annot->pathMethod;
-            $config['fileMimeTypeField'] = false;
-            $config['fileNameField'] = false;
-            $config['filePathField'] = false;
-            $config['fileSizeField'] = false;
+            $config['fileMimeTypeField'] = null;
+            $config['fileNameField'] = null;
+            $config['filePathField'] = null;
+            $config['fileSizeField'] = null;
             $config['callback'] = $annot->callback;
             $config['filenameGenerator'] = $annot->filenameGenerator;
             $config['maxSize'] = (float) $annot->maxSize;
