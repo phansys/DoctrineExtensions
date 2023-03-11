@@ -215,9 +215,9 @@ class Validator
         }
 
         $config['allowedTypes'] = $config['allowedTypes'] ? (false !== strpos($config['allowedTypes'], ',') ?
-            explode(',', $config['allowedTypes']) : [$config['allowedTypes']]) : false;
+            explode(',', $config['allowedTypes']) : [$config['allowedTypes']]) : [];
         $config['disallowedTypes'] = $config['disallowedTypes'] ? (false !== strpos($config['disallowedTypes'], ',') ?
-            explode(',', $config['disallowedTypes']) : [$config['disallowedTypes']]) : false;
+            explode(',', $config['disallowedTypes']) : [$config['disallowedTypes']]) : [];
 
         if ($config['fileNameField']) {
             self::validateFileNameField($meta, $config['fileNameField']);

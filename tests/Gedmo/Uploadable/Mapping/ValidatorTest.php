@@ -79,7 +79,7 @@ final class ValidatorTest extends TestCase
     public function testValidateConfigurationIfNeitherFilePathFieldNorFileNameFieldIsNotDefinedThrowException(): void
     {
         $this->expectException(InvalidMappingException::class);
-        $config = ['filePathField' => false, 'fileNameField' => false];
+        $config = ['filePathField' => null, 'fileNameField' => null];
 
         Validator::validateConfiguration($this->meta, $config);
     }

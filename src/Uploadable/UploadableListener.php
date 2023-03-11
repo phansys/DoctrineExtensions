@@ -139,7 +139,7 @@ class UploadableListener extends MappedEventSubscriber
             // this will mark the entity as dirty, and the "onFlush" event will be fired, even if there's
             // no other change in the entity's fields apart from the file itself.
             if ($uow->isInIdentityMap($entity)) {
-                if ($config['filePathField']) {
+                if (null !== $config['filePathField']) {
                     $path = $this->getFilePathFieldValue($meta, $config, $entity);
                     $uow->propertyChanged($entity, $config['filePathField'], $path, $path);
                 } else {
