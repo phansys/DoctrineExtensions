@@ -158,13 +158,13 @@ class Validator
     }
 
     /**
-     * @param string $path
+     * @param string|null $path
      *
      * @return void
      */
     public static function validatePath($path)
     {
-        if (!is_string($path) || '' === $path) {
+        if (null === $path || !is_string($path)) {
             throw new UploadableInvalidPathException('Path must be a string containing the path to a valid directory.');
         }
 
@@ -188,17 +188,17 @@ class Validator
      */
     public static function validateConfiguration(ClassMetadata $meta, array &$config)
     {
-        if (!$config['filePathField'] && !$config['fileNameField']) {
+        if (null === $config['filePathField'] && null === $config['fileNameField']) {
             throw new InvalidMappingException(sprintf('Class "%s" must have an UploadableFilePath or UploadableFileName field.', $meta->getName()));
         }
 
         $refl = $meta->getReflectionClass();
 
-        if ('' !== $config['pathMethod'] && !$refl->hasMethod($config['pathMethod'])) {
+        if (null !== $config['pathMethod'] && !$refl->hasMethod($config['pathMethod'])) {
             throw new InvalidMappingException(sprintf('Class "%s" doesn\'t have method "%s"!', $meta->getName(), $config['pathMethod']));
         }
 
-        if ('' !== $config['callback'] && !$refl->hasMethod($config['callback'])) {
+        if (null !== $config['callback'] && !$refl->hasMethod($config['callback'])) {
             throw new InvalidMappingException(sprintf('Class "%s" doesn\'t have method "%s"!', $meta->getName(), $config['callback']));
         }
 
@@ -214,28 +214,26 @@ class Validator
             throw new InvalidMappingException(sprintf($msg, $meta->getName()));
         }
 
-        $config['allowedTypes'] = $config['allowedTypes'] ? (false !== strpos($config['allowedTypes'], ',') ?
-            explode(',', $config['allowedTypes']) : [$config['allowedTypes']]) : [];
-        $config['disallowedTypes'] = $config['disallowedTypes'] ? (false !== strpos($config['disallowedTypes'], ',') ?
-            explode(',', $config['disallowedTypes']) : [$config['disallowedTypes']]) : [];
+        $config['allowedTypes'] = '' !== $config['allowedTypes'] ? explode(',', $config['allowedTypes']) : [];
+        $config['disallowedTypes'] = '' !== $config['disallowedTypes'] ? explode(',', $config['disallowedTypes']) : [];
 
-        if ($config['fileNameField']) {
+        if (null !== $config['fileNameField']) {
             self::validateFileNameField($meta, $config['fileNameField']);
         }
 
-        if ($config['filePathField']) {
+        if (null !== $config['filePathField']) {
             self::validateFilePathField($meta, $config['filePathField']);
         }
 
-        if ($config['fileMimeTypeField']) {
+        if (null !== $config['fileMimeTypeField']) {
             self::validateFileMimeTypeField($meta, $config['fileMimeTypeField']);
         }
 
-        if ($config['fileSizeField']) {
+        if (null !== $config['fileSizeField']) {
             self::validateFileSizeField($meta, $config['fileSizeField']);
         }
 
-        switch ((string) $config['filenameGenerator']) {
+        switch ($config['filenameGenerator']) {
             case self::FILENAME_GENERATOR_ALPHANUMERIC:
             case self::FILENAME_GENERATOR_SHA1:
             case self::FILENAME_GENERATOR_NONE:

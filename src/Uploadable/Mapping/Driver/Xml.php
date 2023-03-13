@@ -44,21 +44,21 @@ class Xml extends BaseXml
                 $config['appendNumber'] = $this->_isAttributeSet($xmlUploadable, 'append-number') ?
                     $this->_getBooleanAttribute($xmlUploadable, 'append-number') : false;
                 $config['path'] = $this->_isAttributeSet($xmlUploadable, 'path') ?
-                    $this->_getAttribute($xml->{'uploadable'}, 'path') : '';
+                    $this->_getAttribute($xml->{'uploadable'}, 'path') : null;
                 $config['pathMethod'] = $this->_isAttributeSet($xmlUploadable, 'path-method') ?
-                    $this->_getAttribute($xml->{'uploadable'}, 'path-method') : '';
+                    $this->_getAttribute($xml->{'uploadable'}, 'path-method') : null;
                 $config['callback'] = $this->_isAttributeSet($xmlUploadable, 'callback') ?
-                    $this->_getAttribute($xml->{'uploadable'}, 'callback') : '';
-                $config['fileMimeTypeField'] = false;
-                $config['fileNameField'] = false;
-                $config['filePathField'] = false;
-                $config['fileSizeField'] = false;
+                    $this->_getAttribute($xml->{'uploadable'}, 'callback') : null;
+                $config['fileMimeTypeField'] = null;
+                $config['fileNameField'] = null;
+                $config['filePathField'] = null;
+                $config['fileSizeField'] = null;
                 $config['filenameGenerator'] = $this->_isAttributeSet($xmlUploadable, 'filename-generator') ?
                     $this->_getAttribute($xml->{'uploadable'}, 'filename-generator') :
                     Validator::FILENAME_GENERATOR_NONE;
                 $config['maxSize'] = $this->_isAttributeSet($xmlUploadable, 'max-size') ?
                     (float) $this->_getAttribute($xml->{'uploadable'}, 'max-size') :
-                    (float) 0;
+                    0.0;
                 $config['allowedTypes'] = $this->_isAttributeSet($xmlUploadable, 'allowed-types') ?
                     $this->_getAttribute($xml->{'uploadable'}, 'allowed-types') :
                     '';

@@ -46,21 +46,19 @@ class Yaml extends File implements Driver
                 $uploadable = $classMapping['uploadable'];
 
                 $config['uploadable'] = true;
-                $config['allowOverwrite'] = isset($uploadable['allowOverwrite']) ?
-                    (bool) $uploadable['allowOverwrite'] : false;
-                $config['appendNumber'] = isset($uploadable['appendNumber']) ?
-                    (bool) $uploadable['appendNumber'] : false;
+                $config['allowOverwrite'] = (bool) ($uploadable['allowOverwrite'] ?? false);
+                $config['appendNumber'] = (bool) ($uploadable['appendNumber'] ?? false);
                 $config['path'] = $uploadable['path'] ?? '';
-                $config['pathMethod'] = $uploadable['pathMethod'] ?? '';
-                $config['callback'] = $uploadable['callback'] ?? '';
-                $config['fileMimeTypeField'] = false;
-                $config['fileNameField'] = false;
-                $config['filePathField'] = false;
-                $config['fileSizeField'] = false;
+                $config['pathMethod'] = $uploadable['pathMethod'] ?? null;
+                $config['callback'] = $uploadable['callback'] ?? null;
+                $config['fileMimeTypeField'] = null;
+                $config['fileNameField'] = null;
+                $config['filePathField'] = null;
+                $config['fileSizeField'] = null;
                 $config['filenameGenerator'] = $uploadable['filenameGenerator'] ?? Validator::FILENAME_GENERATOR_NONE;
                 $config['maxSize'] = isset($uploadable['maxSize']) ?
                     (float) $uploadable['maxSize'] :
-                    (float) 0;
+                    0.0;
                 $config['allowedTypes'] = $uploadable['allowedTypes'] ?? '';
                 $config['disallowedTypes'] = $uploadable['disallowedTypes'] ?? '';
 

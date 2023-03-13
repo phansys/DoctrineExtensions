@@ -312,7 +312,7 @@ class UploadableListener extends MappedEventSubscriber
         // We override the mime type with the guessed one
         $info['fileMimeType'] = $mime;
 
-        if ('' !== $config['callback']) {
+        if (null !== $config['callback']) {
             $callbackMethod = $refl->getMethod($config['callback']);
             $callbackMethod->setAccessible(true);
 

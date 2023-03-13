@@ -125,14 +125,14 @@ final class ValidatorTest extends TestCase
             ->willReturn(['type' => 'someType']);
 
         $config = [
-            'fileMimeTypeField' => '',
-            'fileSizeField' => '',
-            'fileNameField' => '',
+            'fileMimeTypeField' => null,
+            'fileSizeField' => null,
+            'fileNameField' => null,
             'filePathField' => 'someField',
-            'pathMethod' => '',
-            'callback' => '',
+            'pathMethod' => null,
+            'callback' => null,
             'filenameGenerator' => 'invalidClass',
-            'maxSize' => 0,
+            'maxSize' => 0.0,
             'allowedTypes' => '',
             'disallowedTypes' => '',
         ];
@@ -154,14 +154,14 @@ final class ValidatorTest extends TestCase
             ->willReturn(['type' => 'someType']);
 
         $config = [
-            'fileMimeTypeField' => '',
-            'fileSizeField' => '',
-            'fileNameField' => '',
+            'fileMimeTypeField' => null,
+            'fileSizeField' => null,
+            'fileNameField' => null,
             'filePathField' => 'someField',
-            'pathMethod' => '',
-            'callback' => '',
+            'pathMethod' => null,
+            'callback' => null,
             'filenameGenerator' => 'DateTime',
-            'maxSize' => 0,
+            'maxSize' => 0.0,
             'allowedTypes' => '',
             'disallowedTypes' => '',
         ];
@@ -182,14 +182,14 @@ final class ValidatorTest extends TestCase
             ->willReturn(['type' => 'string']);
 
         $config = [
-            'fileMimeTypeField' => '',
-            'fileSizeField' => '',
-            'fileNameField' => '',
+            'fileMimeTypeField' => null,
+            'fileSizeField' => null,
+            'fileNameField' => null,
             'filePathField' => 'someField',
-            'pathMethod' => '',
-            'callback' => '',
+            'pathMethod' => null,
+            'callback' => null,
             'filenameGenerator' => 'SHA1',
-            'maxSize' => 0,
+            'maxSize' => 0.0,
             'allowedTypes' => '',
             'disallowedTypes' => '',
         ];
@@ -210,14 +210,14 @@ final class ValidatorTest extends TestCase
             ->willReturn(['type' => 'string']);
 
         $config = [
-            'fileMimeTypeField' => '',
-            'fileSizeField' => '',
-            'fileNameField' => '',
+            'fileMimeTypeField' => null,
+            'fileSizeField' => null,
+            'fileNameField' => null,
             'filePathField' => 'someField',
-            'pathMethod' => '',
-            'callback' => '',
+            'pathMethod' => null,
+            'callback' => null,
             'filenameGenerator' => FilenameGeneratorSha1::class,
-            'maxSize' => 0,
+            'maxSize' => 0.0,
             'allowedTypes' => '',
             'disallowedTypes' => '',
         ];
@@ -238,9 +238,9 @@ final class ValidatorTest extends TestCase
         $config = [
             'fileMimeTypeField' => 'someField',
             'filePathField' => 'someField',
-            'fileSizeField' => '',
-            'pathMethod' => '',
-            'callback' => '',
+            'fileSizeField' => null,
+            'pathMethod' => null,
+            'callback' => null,
             'maxSize' => -123,
             'allowedTypes' => '',
             'disallowedTypes' => '',
@@ -264,10 +264,10 @@ final class ValidatorTest extends TestCase
         $config = [
             'fileMimeTypeField' => 'someField',
             'filePathField' => 'someField',
-            'fileSizeField' => '',
-            'pathMethod' => '',
-            'callback' => '',
-            'maxSize' => 0,
+            'fileSizeField' => null,
+            'pathMethod' => null,
+            'callback' => null,
+            'maxSize' => 0.0,
             'allowedTypes' => 'text/plain',
             'disallowedTypes' => 'text/css',
         ];

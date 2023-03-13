@@ -39,19 +39,19 @@ final class Uploadable implements GedmoAnnotation
     public $appendNumber = false;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $path = '';
+    public $path;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $pathMethod = '';
+    public $pathMethod;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $callback = '';
+    public $callback;
 
     /**
      * @var string
@@ -61,9 +61,9 @@ final class Uploadable implements GedmoAnnotation
     public $filenameGenerator = Validator::FILENAME_GENERATOR_NONE;
 
     /**
-     * @var string
+     * @var float
      */
-    public $maxSize = '0';
+    public $maxSize = 0.0;
 
     /**
      * @var string A list of comma separate values of allowed types, like "text/plain,text/css"
@@ -79,11 +79,11 @@ final class Uploadable implements GedmoAnnotation
         array $data = [],
         bool $allowOverwrite = false,
         bool $appendNumber = false,
-        string $path = '',
-        string $pathMethod = '',
-        string $callback = '',
+        string $path = null,
+        string $pathMethod = null,
+        string $callback = null,
         string $filenameGenerator = Validator::FILENAME_GENERATOR_NONE,
-        string $maxSize = '0',
+        string $maxSize = '0.0',
         string $allowedTypes = '',
         string $disallowedTypes = ''
     ) {
