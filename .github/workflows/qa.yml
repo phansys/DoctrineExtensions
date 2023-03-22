@@ -3,7 +3,7 @@ name: Quality Assurance
 on:
   push:
     branches:
-      - main
+      # - main
   pull_request:
 
 jobs:
