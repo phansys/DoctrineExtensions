@@ -66,14 +66,14 @@ final class Uploadable implements GedmoAnnotation
     public $maxSize = '0';
 
     /**
-     * @var string A list of comma separate values of allowed types, like "text/plain,text/css"
+     * @var string[] A list of allowed types, like "text/plain", "text/css"
      */
-    public $allowedTypes = '';
+    public $allowedTypes = [];
 
     /**
-     * @var string A list of comma separate values of disallowed types, like "video/jpeg,text/html"
+     * @var string[] A list of disallowed types, like "video/jpeg", "text/html"
      */
-    public $disallowedTypes = '';
+    public $disallowedTypes = [];
 
     public function __construct(
         array $data = [],
@@ -101,7 +101,10 @@ final class Uploadable implements GedmoAnnotation
         $this->callback = $data['callback'] ?? $callback;
         $this->filenameGenerator = $data['filenameGenerator'] ?? $filenameGenerator;
         $this->maxSize = $data['maxSize'] ?? $maxSize;
-        $this->allowedTypes = $data['allowedTypes'] ?? $allowedTypes;
-        $this->disallowedTypes = $data['disallowedTypes'] ?? $disallowedTypes;
+        $allowedTypes ??= $data['allowedTypes'];
+        $disallowedTypes ??= $data['disallowedTypes'];
+
+        $this->allowedTypes = explode(',', $allowedTypes);
+        $this->disallowedTypes = explode(',', $disallowedTypes);
     }
 }

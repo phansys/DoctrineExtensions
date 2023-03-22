@@ -214,11 +214,6 @@ class Validator
             throw new InvalidMappingException(sprintf($msg, $meta->getName()));
         }
 
-        $config['allowedTypes'] = $config['allowedTypes'] ? (false !== strpos($config['allowedTypes'], ',') ?
-            explode(',', $config['allowedTypes']) : [$config['allowedTypes']]) : false;
-        $config['disallowedTypes'] = $config['disallowedTypes'] ? (false !== strpos($config['disallowedTypes'], ',') ?
-            explode(',', $config['disallowedTypes']) : [$config['disallowedTypes']]) : false;
-
         if ($config['fileNameField']) {
             self::validateFileNameField($meta, $config['fileNameField']);
         }
