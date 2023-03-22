@@ -28,7 +28,7 @@ interface Driver
      *
      * @param ClassMetadata&(OdmClassMetadata|OrmClassMetadata) $meta
      *
-     * @return void
+     * @return array<string, mixed>
      *
      * @throws InvalidMappingException if the mapping configuration is invalid
      */

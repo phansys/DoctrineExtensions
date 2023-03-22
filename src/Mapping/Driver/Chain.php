@@ -81,16 +81,12 @@ class Chain implements Driver
     {
         foreach ($this->_drivers as $namespace => $driver) {
             if (0 === strpos($meta->getName(), $namespace)) {
-                $driver->readExtendedMetadata($meta, $config);
-
-                return;
+                return $driver->readExtendedMetadata($meta, $config);
             }
         }
 
         if (null !== $this->defaultDriver) {
-            $this->defaultDriver->readExtendedMetadata($meta, $config);
-
-            return;
+            return $this->defaultDriver->readExtendedMetadata($meta, $config);
         }
 
         // commenting it for customized mapping support, debugging of such cases might get harder

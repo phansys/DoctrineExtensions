@@ -55,15 +55,17 @@ class Yaml extends File implements Driver
 
         if (isset($mapping['fields'])) {
             foreach ($mapping['fields'] as $field => $fieldMapping) {
-                $this->buildFieldConfiguration($field, $fieldMapping, $meta, $config);
+                $config = $this->buildFieldConfiguration($field, $fieldMapping, $meta, $config);
             }
         }
 
         if (isset($mapping['attributeOverride'])) {
             foreach ($mapping['attributeOverride'] as $field => $overrideMapping) {
-                $this->buildFieldConfiguration($field, $overrideMapping, $meta, $config);
+                $config = $this->buildFieldConfiguration($field, $overrideMapping, $meta, $config);
             }
         }
+
+        return $config;
     }
 
     protected function _loadMappingFile($file)
@@ -86,7 +88,7 @@ class Yaml extends File implements Driver
         return $mapping && in_array($mapping['type'], self::VALID_TYPES, true);
     }
 
-    private function buildFieldConfiguration(string $field, array $fieldMapping, ClassMetadata $meta, array &$config): void
+    private function buildFieldConfiguration(string $field, array $fieldMapping, ClassMetadata $meta, array &$config): array
     {
         if (isset($fieldMapping['gedmo'])) {
             if (isset($fieldMapping['gedmo']['slug'])) {
@@ -156,5 +158,7 @@ class Yaml extends File implements Driver
                 }
             }
         }
+
+        return $config;
     }
 }

@@ -184,7 +184,7 @@ class Validator
     /**
      * @param array<string, mixed> $config
      *
-     * @return void
+     * @return array<string, mixed>
      */
     public static function validateConfiguration(ClassMetadata $meta, array &$config)
     {
@@ -214,6 +214,12 @@ class Validator
             throw new InvalidMappingException(sprintf($msg, $meta->getName()));
         }
 
+        $config['allowedTypes'] = $config['allowedTypes'] ? (false !== strpos($config['allowedTypes'], ',') ?
+            explode(',', $config['allowedTypes']) : [$config['allowedTypes']]) : false;
+        $config['disallowedTypes'] = $config['disallowedTypes'] ? (false !== strpos($config['disallowedTypes'], ',') ?
+            explode(',', $config['disallowedTypes']) : [$config['disallowedTypes']]) : false;
+
+
         if ($config['fileNameField']) {
             self::validateFileNameField($meta, $config['fileNameField']);
         }
@@ -240,5 +246,7 @@ class Validator
                     throw new InvalidMappingException(sprintf('Class "%s" needs a valid value for filenameGenerator. It can be: SHA1, ALPHANUMERIC, NONE or a class implementing %s.', $meta->getName(), FilenameGeneratorInterface::class));
                 }
         }
+
+        return $config;
     }
 }

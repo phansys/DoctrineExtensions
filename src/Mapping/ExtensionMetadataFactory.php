@@ -121,7 +121,7 @@ class ExtensionMetadataFactory
 
                     assert($class instanceof DocumentClassMetadata || $class instanceof EntityClassMetadata);
 
-                    $this->driver->readExtendedMetadata($class, $config);
+                    $config = $this->driver->readExtendedMetadata($class, $config);
                     $isBaseInheritanceLevel = !$class->isInheritanceTypeNone()
                         && [] === $class->parentClasses
                         && [] !== $config
@@ -131,7 +131,7 @@ class ExtensionMetadataFactory
                     }
                 }
             }
-            $this->driver->readExtendedMetadata($meta, $config);
+            $config = $this->driver->readExtendedMetadata($meta, $config);
         }
         if ([] !== $config) {
             $config['useObjectClass'] = $useObjectName;

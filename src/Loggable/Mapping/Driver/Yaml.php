@@ -117,7 +117,7 @@ class Yaml extends File implements Driver
                         }
                         // fields cannot be overrided and throws mapping exception
                         $mapping = $this->_getMapping($fieldMapping['class']);
-                        $this->inspectEmbeddedForVersioned($field, $mapping, $config);
+                        $config = $this->inspectEmbeddedForVersioned($field, $mapping, $config);
                     }
                 }
             }
@@ -131,6 +131,8 @@ class Yaml extends File implements Driver
                 throw new InvalidMappingException("Class must be annoted with Loggable annotation in order to track versioned fields in class - {$meta->getName()}");
             }
         }
+
+        return $config;
     }
 
     protected function _loadMappingFile($file)
@@ -138,12 +140,14 @@ class Yaml extends File implements Driver
         return \Symfony\Component\Yaml\Yaml::parse(file_get_contents($file));
     }
 
-    private function inspectEmbeddedForVersioned(string $field, array $mapping, array &$config): void
+    private function inspectEmbeddedForVersioned(string $field, array $mapping, array &$config): array
     {
         if (isset($mapping['fields'])) {
             foreach ($mapping['fields'] as $property => $fieldMapping) {
                 $config['versioned'][] = $field.'.'.$property;
             }
         }
+
+        return $config;
     }
 }

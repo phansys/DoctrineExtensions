@@ -101,10 +101,12 @@ final class Uploadable implements GedmoAnnotation
         $this->callback = $data['callback'] ?? $callback;
         $this->filenameGenerator = $data['filenameGenerator'] ?? $filenameGenerator;
         $this->maxSize = $data['maxSize'] ?? $maxSize;
-        $allowedTypes ??= $data['allowedTypes'];
-        $disallowedTypes ??= $data['disallowedTypes'];
+        $this->allowedTypes = $data['allowedTypes'] ?? $allowedTypes;
+        $this->disallowedTypes = $data['disallowedTypes'] ?? $disallowedTypes;
+        // $allowedTypes ??= $data['allowedTypes'];
+        // $disallowedTypes ??= $data['disallowedTypes'];
 
-        $this->allowedTypes = explode(',', $allowedTypes);
-        $this->disallowedTypes = explode(',', $disallowedTypes);
+        // $this->allowedTypes = explode(',', $allowedTypes);
+        // $this->disallowedTypes = explode(',', $disallowedTypes);
     }
 }
