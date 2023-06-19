@@ -9,6 +9,7 @@
 
 namespace Gedmo\Timestampable\Mapping\Event\Adapter;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ODM\MongoDB\Mapping\ClassMetadata;
 use Gedmo\Mapping\Event\Adapter\ODM as BaseAdapterODM;
 use Gedmo\Timestampable\Mapping\Event\TimestampableAdapter;
@@ -30,7 +31,7 @@ final class ODM extends BaseAdapterODM implements TimestampableAdapter
         if (isset($mapping['type']) && 'timestamp' === $mapping['type']) {
             return time();
         }
-        if (isset($mapping['type']) && in_array($mapping['type'], ['date_immutable', 'time_immutable', 'datetime_immutable', 'datetimetz_immutable'], true)) {
+        if (isset($mapping['type']) && in_array($mapping['type'], [Types::DATE_IMMUTABLE, Types::TIME_IMMUTABLE, Types::DATETIME_IMMUTABLE, Types::DATETIMETZ_IMMUTABLE], true)) {
             return new \DateTimeImmutable();
         }
 

@@ -9,6 +9,7 @@
 
 namespace Gedmo\Timestampable\Mapping\Driver;
 
+use Doctrine\DBAL\Types\Types;
 use Gedmo\Exception\InvalidMappingException;
 use Gedmo\Mapping\Annotation\Timestampable;
 use Gedmo\Mapping\Driver\AbstractAnnotationDriver;
@@ -36,17 +37,17 @@ class Annotation extends AbstractAnnotationDriver
      * @var string[]
      */
     protected $validTypes = [
-        'date',
-        'date_immutable',
-        'time',
-        'time_immutable',
-        'datetime',
-        'datetime_immutable',
-        'datetimetz',
-        'datetimetz_immutable',
+        Types::DATE_MUTABLE,
+        Types::DATE_IMMUTABLE,
+        Types::TIME_MUTABLE,
+        Types::TIME_IMMUTABLE,
+        Types::DATETIME_MUTABLE,
+        Types::DATE_IMMUTABLE,
+        Types::DATETIMETZ_MUTABLE,
+        Types::DATETIMETZ_IMMUTABLE,
         'timestamp',
         'vardatetime',
-        'integer',
+        Types::INTEGER,
     ];
 
     public function readExtendedMetadata($meta, array &$config)

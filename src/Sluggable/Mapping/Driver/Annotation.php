@@ -9,6 +9,7 @@
 
 namespace Gedmo\Sluggable\Mapping\Driver;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Gedmo\Exception\InvalidMappingException;
 use Gedmo\Mapping\Annotation\Slug;
@@ -50,16 +51,16 @@ class Annotation extends AbstractAnnotationDriver
      * @var string[]
      */
     protected $validTypes = [
-        'string',
-        'text',
-        'integer',
+        Types::STRING,
+        Types::TEXT,
+        Types::INTEGER,
         'int',
-        'date',
-        'date_immutable',
-        'datetime',
-        'datetime_immutable',
-        'datetimetz',
-        'datetimetz_immutable',
+        Types::DATE_MUTABLE,
+        Types::DATE_IMMUTABLE,
+        Types::DATETIME_MUTABLE,
+        Types::DATETIME_IMMUTABLE,
+        Types::DATETIMETZ_MUTABLE,
+        Types::DATETIMETZ_IMMUTABLE,
         'citext',
     ];
 

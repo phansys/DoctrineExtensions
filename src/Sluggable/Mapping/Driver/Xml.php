@@ -9,6 +9,7 @@
 
 namespace Gedmo\Sluggable\Mapping\Driver;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Gedmo\Exception\InvalidMappingException;
 use Gedmo\Mapping\Driver\Xml as BaseXml;
@@ -32,11 +33,11 @@ class Xml extends BaseXml
      * @var string[]
      */
     private const VALID_TYPES = [
-        'string',
-        'text',
-        'integer',
+        Types::STRING,
+        Types::TEXT,
+        Types::INTEGER,
         'int',
-        'datetime',
+        Types::DATETIME_MUTABLE,
         'citext',
     ];
 

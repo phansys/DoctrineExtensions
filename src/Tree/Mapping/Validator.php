@@ -9,6 +9,7 @@
 
 namespace Gedmo\Tree\Mapping;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Gedmo\Exception\InvalidMappingException;
 
@@ -157,7 +158,7 @@ class Validator
     {
         $mapping = $meta->getFieldMapping($field);
 
-        return $mapping && ('date' === $mapping['type'] || 'datetime' === $mapping['type'] || 'timestamp' === $mapping['type']);
+        return $mapping && (Types::DATE_MUTABLE === $mapping['type'] || Types::DATETIME_MUTABLE === $mapping['type'] || 'timestamp' === $mapping['type']);
     }
 
     /**

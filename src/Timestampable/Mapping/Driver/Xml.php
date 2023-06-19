@@ -9,6 +9,7 @@
 
 namespace Gedmo\Timestampable\Mapping\Driver;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Gedmo\Exception\InvalidMappingException;
 use Gedmo\Mapping\Driver\Xml as BaseXml;
@@ -32,17 +33,17 @@ class Xml extends BaseXml
      * @var string[]
      */
     private const VALID_TYPES = [
-        'date',
-        'date_immutable',
-        'time',
-        'time_immutable',
-        'datetime',
-        'datetime_immutable',
-        'datetimetz',
-        'datetimetz_immutable',
+        Types::DATE_MUTABLE,
+        Types::DATE_IMMUTABLE,
+        Types::TIME_MUTABLE,
+        Types::TIME_IMMUTABLE,
+        Types::DATETIME_MUTABLE,
+        Types::DATETIME_IMMUTABLE,
+        Types::DATETIMETZ_MUTABLE,
+        Types::DATETIMETZ_IMMUTABLE,
         'timestamp',
         'vardatetime',
-        'integer',
+        Types::INTEGER,
     ];
 
     public function readExtendedMetadata($meta, array &$config)

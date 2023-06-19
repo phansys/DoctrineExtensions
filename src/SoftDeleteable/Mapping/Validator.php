@@ -9,6 +9,7 @@
 
 namespace Gedmo\SoftDeleteable\Mapping;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Gedmo\Exception\InvalidMappingException;
 
@@ -28,14 +29,14 @@ class Validator
      * @var string[]
      */
     public static $validTypes = [
-        'date',
-        'date_immutable',
-        'time',
-        'time_immutable',
-        'datetime',
-        'datetime_immutable',
-        'datetimetz',
-        'datetimetz_immutable',
+        Types::DATE_MUTABLE,
+        Types::DATE_IMMUTABLE,
+        Types::TIME_MUTABLE,
+        Types::TIME_IMMUTABLE,
+        Types::DATETIME_MUTABLE,
+        Types::DATETIME_IMMUTABLE,
+        Types::DATETIMETZ_MUTABLE,
+        Types::DATETIMETZ_IMMUTABLE,
         'timestamp',
     ];
 
