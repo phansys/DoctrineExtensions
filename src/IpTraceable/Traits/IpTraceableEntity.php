@@ -29,7 +29,7 @@ trait IpTraceableEntity
      * @ORM\Column(length=45, nullable=true)
      */
     #[ORM\Column(length: 45, nullable: true)]
-    #[Gedmo\IpTraceable(on: 'create')]
+    #[Gedmo\IpTraceable(on: Gedmo\IpTraceable::EVENT_CREATE)]
     protected $createdFromIp;
 
     /**
@@ -40,7 +40,7 @@ trait IpTraceableEntity
      * @ORM\Column(length=45, nullable=true)
      */
     #[ORM\Column(length: 45, nullable: true)]
-    #[Gedmo\IpTraceable(on: 'update')]
+    #[Gedmo\IpTraceable(on: Gedmo\IpTraceable::EVENT_UPDATE)]
     protected $updatedFromIp;
 
     /**

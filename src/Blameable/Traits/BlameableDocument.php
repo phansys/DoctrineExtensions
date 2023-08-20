@@ -30,7 +30,7 @@ trait BlameableDocument
      * @ODM\Field(type="string")
      */
     #[ODM\Field(type: Type::STRING)]
-    #[Gedmo\Blameable(on: 'create')]
+    #[Gedmo\Blameable(on: Gedmo\Blameable::EVENT_CREATE)]
     protected $createdBy;
 
     /**
@@ -41,7 +41,7 @@ trait BlameableDocument
      * @ODM\Field(type="string")
      */
     #[ODM\Field(type: Type::STRING)]
-    #[Gedmo\Blameable(on: 'update')]
+    #[Gedmo\Blameable(on: Gedmo\Blameable::EVENT_UPDATE)]
     protected $updatedBy;
 
     /**

@@ -11,7 +11,6 @@ namespace Gedmo\Mapping\Annotation;
 
 use Doctrine\Common\Annotations\Annotation;
 use Doctrine\Deprecations\Deprecation;
-use Gedmo\Mapping\Annotation\Annotation as GedmoAnnotation;
 
 /**
  * IpTraceable annotation for IpTraceable behavioral extension
@@ -25,12 +24,14 @@ use Gedmo\Mapping\Annotation\Annotation as GedmoAnnotation;
  * @author Pierre-Charles Bertineau <pc.bertineau@alterphp.com>
  */
 #[\Attribute(\Attribute::TARGET_PROPERTY)]
-final class IpTraceable implements GedmoAnnotation
+final class IpTraceable implements TrackingAwareAnnotationInterface
 {
     use ForwardCompatibilityTrait;
 
-    /** @var string */
-    public $on = 'update';
+    /**
+     * @phpstan-var self::EVENT_*
+     */
+    public string $on = self::EVENT_UPDATE;
     /** @var string|string[]|null */
     public $field;
     /** @var mixed */
@@ -40,8 +41,10 @@ final class IpTraceable implements GedmoAnnotation
      * @param array<string, mixed> $data
      * @param string|string[]|null $field
      * @param mixed                $value
+     *
+     * @phpstan-param self::EVENT_* $on
      */
-    public function __construct(array $data = [], string $on = 'update', $field = null, $value = null)
+    public function __construct(array $data = [], string $on = self::EVENT_UPDATE, $field = null, $value = null)
     {
         if ([] !== $data) {
             Deprecation::trigger(

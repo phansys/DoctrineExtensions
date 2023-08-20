@@ -29,7 +29,7 @@ trait TimestampableDocument
      *
      * @ODM\Field(type="date")
      */
-    #[Gedmo\Timestampable(on: 'create')]
+    #[Gedmo\Timestampable(on: Gedmo\Timestampable::EVENT_CREATE)]
     #[ODM\Field(type: Type::DATE)]
     protected $createdAt;
 
@@ -40,7 +40,7 @@ trait TimestampableDocument
      *
      * @ODM\Field(type="date")
      */
-    #[Gedmo\Timestampable(on: 'update')]
+    #[Gedmo\Timestampable(on: Gedmo\Timestampable::EVENT_UPDATE)]
     #[ODM\Field(type: Type::DATE)]
     protected $updatedAt;
 

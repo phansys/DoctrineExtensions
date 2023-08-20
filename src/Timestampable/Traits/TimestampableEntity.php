@@ -29,7 +29,7 @@ trait TimestampableEntity
      *
      * @ORM\Column(type="datetime")
      */
-    #[Gedmo\Timestampable(on: 'create')]
+    #[Gedmo\Timestampable(on: Gedmo\Timestampable::EVENT_CREATE)]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     protected $createdAt;
 
@@ -40,7 +40,7 @@ trait TimestampableEntity
      *
      * @ORM\Column(type="datetime")
      */
-    #[Gedmo\Timestampable(on: 'update')]
+    #[Gedmo\Timestampable(on: Gedmo\Timestampable::EVENT_UPDATE)]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     protected $updatedAt;
 

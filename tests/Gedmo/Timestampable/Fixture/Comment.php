@@ -62,7 +62,7 @@ class Comment implements Timestampable
      * @Gedmo\Timestampable(on="change", field="status", value=1)
      */
     #[ORM\Column(name: 'closed', type: Types::DATETIME_MUTABLE, nullable: true)]
-    #[Gedmo\Timestampable(on: 'change', field: 'status', value: 1)]
+    #[Gedmo\Timestampable(on: Gedmo\Timestampable::EVENT_CHANGE, field: 'status', value: 1)]
     private $closed;
 
     /**
@@ -73,7 +73,7 @@ class Comment implements Timestampable
      * @Gedmo\Timestampable(on="update")
      */
     #[ORM\Column(name: 'modified', type: Types::TIME_MUTABLE)]
-    #[Gedmo\Timestampable(on: 'update')]
+    #[Gedmo\Timestampable(on: Gedmo\Timestampable::EVENT_UPDATE)]
     private $modified;
 
     /**
