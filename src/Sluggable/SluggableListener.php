@@ -16,6 +16,7 @@ use Doctrine\Persistence\Event\ManagerEventArgs;
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Doctrine\Persistence\ObjectManager;
 use Gedmo\Exception\InvalidArgumentException;
+use Gedmo\Mapping\Annotation\Slug;
 use Gedmo\Mapping\MappedEventSubscriber;
 use Gedmo\Sluggable\Handler\SlugHandlerInterface;
 use Gedmo\Sluggable\Handler\SlugHandlerWithUniqueCallbackInterface;
@@ -410,13 +411,17 @@ class SluggableListener extends MappedEventSubscriber
 
                 // Step 3: stylize the slug
                 switch ($options['style']) {
-                    case 'camel':
+                    case Slug::STYLE_CAMEL:
                         $quotedSeparator = preg_quote($options['separator']);
-                        $slug = preg_replace_callback('/^[a-z]|'.$quotedSeparator.'[a-z]/smi', static fn ($m) => strtoupper($m[0]), $slug);
+                        $slug = preg_replace_callback(
+                            '/^[a-z]|'.$quotedSeparator.'[a-z]/smi',
+                            static fn (array $m): string => function_exists('mb_strtoupper') ? mb_strtoupper($m[0]) : strtoupper($m[0]),
+                            $slug
+                        );
 
                         break;
 
-                    case 'lower':
+                    case Slug::STYLE_LOWER:
                         if (function_exists('mb_strtolower')) {
                             $slug = mb_strtolower($slug);
                         } else {
@@ -425,7 +430,7 @@ class SluggableListener extends MappedEventSubscriber
 
                         break;
 
-                    case 'upper':
+                    case Slug::STYLE_UPPER:
                         if (function_exists('mb_strtoupper')) {
                             $slug = mb_strtoupper($slug);
                         } else {
