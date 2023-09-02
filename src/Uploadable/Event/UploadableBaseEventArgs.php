@@ -35,27 +35,11 @@ abstract class UploadableBaseEventArgs extends EventArgs
     private $em;
 
     /**
-     * @todo Check if this property must be removed, as it is not used.
-     *
-     * @var array
-     */
-    private $config = [];
-
-    /**
      * The Uploadable entity
      *
      * @var object
      */
     private $entity;
-
-    /**
-     * The configuration of the Uploadable extension for this entity class
-     *
-     * @todo Check if this property must be removed, as it is never set.
-     *
-     * @var array
-     */
-    private $extensionConfiguration;
 
     /**
      * @var FileInfoInterface
@@ -78,7 +62,6 @@ abstract class UploadableBaseEventArgs extends EventArgs
     {
         $this->uploadableListener = $listener;
         $this->em = $em;
-        $this->config = $config;
         $this->fileInfo = $fileInfo;
         $this->entity = $entity;
         $this->action = $action;
@@ -121,7 +104,7 @@ abstract class UploadableBaseEventArgs extends EventArgs
      */
     public function getExtensionConfiguration()
     {
-        return $this->extensionConfiguration;
+        return [];
     }
 
     /**
