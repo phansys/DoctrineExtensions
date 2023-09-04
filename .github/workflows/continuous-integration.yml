@@ -2,8 +2,8 @@ name: "Continuous Integration"
 
 on:
   push:
-    branches:
-      - main
+    # branches:
+    #   - main
   pull_request:
 
 env:
@@ -70,6 +70,9 @@ jobs:
         uses: "ramsey/composer-install@v2"
         with:
           dependency-versions: "${{ matrix.deps }}"
+
+      - name: "Collect workflow telemetry"
+        uses: "runforesight/workflow-telemetry-action@v1"
 
       - name: "Run PHPUnit"
         run: "bin/phpunit -c tests --coverage-clover coverage.xml"
