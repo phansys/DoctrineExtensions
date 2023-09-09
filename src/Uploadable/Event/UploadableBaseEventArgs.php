@@ -9,7 +9,7 @@
 
 namespace Gedmo\Uploadable\Event;
 
-use Doctrine\Common\EventArgs;
+use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Doctrine\ORM\EntityManagerInterface;
 use Gedmo\Uploadable\FileInfo\FileInfoInterface;
 use Gedmo\Uploadable\UploadableListener;
@@ -20,7 +20,7 @@ use Gedmo\Uploadable\UploadableListener;
  * @author Gustavo Falco <comfortablynumb84@gmail.com>
  * @author Gediminas Morkevicius <gediminas.morkevicius@gmail.com>
  */
-abstract class UploadableBaseEventArgs extends EventArgs
+abstract class UploadableBaseEventArgs extends LifecycleEventArgs
 {
     /**
      * The instance of the Uploadable listener that fired this event

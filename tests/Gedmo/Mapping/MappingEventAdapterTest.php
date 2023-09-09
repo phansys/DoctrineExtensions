@@ -12,7 +12,8 @@ declare(strict_types=1);
 namespace Gedmo\Tests\Mapping;
 
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\PrePersistEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Gedmo\Mapping\Event\Adapter\ORM as EventAdapterORM;
 use Gedmo\Tests\Mapping\Mock\EventSubscriberCustomMock;
 use Gedmo\Tests\Mapping\Mock\EventSubscriberMock;
@@ -27,7 +28,7 @@ final class MappingEventAdapterTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
         $subscriber = new EventSubscriberCustomMock();
-        $args = new LifecycleEventArgs(new \stdClass(), $emMock);
+        $args = new PrePersistEventArgs(new \stdClass(), $emMock);
 
         $adapter = $subscriber->getAdapter($args);
         static::assertInstanceOf(CustomizedORMAdapter::class, $adapter);
@@ -39,7 +40,7 @@ final class MappingEventAdapterTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
         $subscriber = new EventSubscriberMock();
-        $args = new LifecycleEventArgs(new \stdClass(), $emMock);
+        $args = new PrePersistEventArgs(new \stdClass(), $emMock);
 
         $adapter = $subscriber->getAdapter($args);
         static::assertInstanceOf(EventAdapterORM::class, $adapter);
@@ -49,7 +50,7 @@ final class MappingEventAdapterTest extends TestCase
 
     public function testAdapterBehavior(): void
     {
-        $eventArgsMock = $this->getMockBuilder(LifecycleEventArgs::class)
+        $eventArgsMock = $this->getMockBuilder(PreUpdateEventArgs::class)
             ->disableOriginalConstructor()
             ->getMock();
         $eventArgsMock->expects(static::once())

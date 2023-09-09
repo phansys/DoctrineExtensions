@@ -41,6 +41,8 @@ interface AdapterInterface
     /**
      * Set the event args object.
      *
+     * @todo In the next major, use `\Doctrine\Persistence\Event\LifecycleEventArgs` for argument 1 instead.
+     *
      * @return void
      */
     public function setEventArgs(EventArgs $args);

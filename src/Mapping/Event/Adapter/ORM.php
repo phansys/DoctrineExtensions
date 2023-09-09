@@ -11,8 +11,9 @@ namespace Gedmo\Mapping\Event\Adapter;
 
 use Doctrine\Common\EventArgs;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\LifecycleEventArgs as DeprecatedLifecycleEventArgs;
 use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Gedmo\Exception\RuntimeException;
 use Gedmo\Mapping\Event\AdapterInterface;
 
@@ -25,6 +26,8 @@ use Gedmo\Mapping\Event\AdapterInterface;
 class ORM implements AdapterInterface
 {
     /**
+     * @todo In the next major, use `\Doctrine\Persistence\Event\LifecycleEventArgs` instead.
+     *
      * @var EventArgs
      */
     private $args;
@@ -51,6 +54,16 @@ class ORM implements AdapterInterface
 
     public function setEventArgs(EventArgs $args)
     {
+        if (!$args instanceof LifecycleEventArgs) {
+            @trigger_error(sprintf(
+                'Passing an object type different than "%s" as argument 1 to "%s()" is deprecated since gedmo/doctrine-extensions 3.x'
+                .' and will throw a "%s" error in version 4.0.',
+                LifecycleEventArgs::class,
+                __METHOD__,
+                \TypeError::class
+            ), E_USER_DEPRECATED);
+        }
+
         $this->args = $args;
     }
 
@@ -95,7 +108,7 @@ class ORM implements AdapterInterface
             throw new \LogicException(sprintf('Event args must be set before calling "%s()".', __METHOD__));
         }
 
-        // @todo create getObjectManager in UploadableBaseEventArgs.php and remove this check
+        // @todo Remove this check when `\Doctrine\Persistence\Event\LifecycleEventArgs` is used.
         if (\method_exists($this->args, 'getObjectManager')) {
             return $this->args->getObjectManager();
         }
@@ -109,7 +122,7 @@ class ORM implements AdapterInterface
             throw new \LogicException(sprintf('Event args must be set before calling "%s()".', __METHOD__));
         }
 
-        // @todo create getObject in UploadableBaseEventArgs.php and remove this check
+        // @todo Remove this check when `\Doctrine\Persistence\Event\LifecycleEventArgs` is used.
         if (\method_exists($this->args, 'getObject')) {
             return $this->args->getObject();
         }
@@ -166,15 +179,15 @@ class ORM implements AdapterInterface
     }
 
     /**
-     * Creates a ORM specific LifecycleEventArgs.
+     * Creates a ORM specific DeprecatedLifecycleEventArgs.
      *
      * @param object                 $document
      * @param EntityManagerInterface $entityManager
      *
-     * @return LifecycleEventArgs
+     * @return DeprecatedLifecycleEventArgs
      */
     public function createLifecycleEventArgsInstance($document, $entityManager)
     {
-        return new LifecycleEventArgs($document, $entityManager);
+        return new DeprecatedLifecycleEventArgs($document, $entityManager);
     }
 }
